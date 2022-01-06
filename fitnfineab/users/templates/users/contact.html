@@ -1,0 +1,177 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block title %} Contact Us {% endblock %}
+
+{% block body %}
+<style>
+    /*Contact Cards*/
+
+  .masthead {
+    background: #3398e1;
+    height: auto;
+    padding-bottom: 15px;
+    box-shadow: 0 16px 48px #e3e7eb;
+    padding-top: 10px;
+  }
+  .social-list {
+    display: inline-flex;
+  }
+  
+  .social-list li {
+    list-style: none;
+    margin-right: 10px;
+  }
+  
+  .maincard {
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .thecard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.8s ease;
+  }
+  
+  .thecard:hover {
+    transform: rotateY(180deg);
+  }
+  .thefront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: hidden;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    padding: 2px;
+  }
+  
+  .theback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: hidden;
+    color: #fff;
+    border-radius: 10px;
+    transform: rotateY(180deg);
+    border: 1px solid #eee;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    padding: 2px;
+  }
+  
+  .social-text small {
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  @media (max-width: 700px) {
+    .social-list {
+      display: block;
+    }
+  }
+  
+  .facebook {
+    background: #3b5998;
+  }
+  
+  .instagram {
+    background: #9b3f5e;
+  }
+  
+  .linkedin {
+    background: #0000ef;
+  }
+  
+  .whatsapp {
+    background: #4dc247;
+  }
+  
+</style>
+
+<div class="container">
+    &nbsp;&nbsp;
+    {% if messages %}
+        {% for message in messages %}
+        <h3 style="color:blue" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+    &nbsp;&nbsp;
+    <h3>Contact Us:</h3>
+    <form action="{% url 'users:contact' %}" method="post" style="border-style: outset; padding-top: 20px; padding: 15px; border-radius: 10px;">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.author }} &nbsp;&nbsp; {{ form.email }}
+        </div>
+        <div class="form-group">
+            &nbsp;&nbsp;
+            {{ form.body }}
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form> 
+    <br><br><br>
+    <p style="text-align: center;">
+                       
+        <span><i class="fas fa-phone">&nbsp; +234-703 106 6645</i></span>
+        or
+        <a href="mailto:dcommandos5@gmail.com"><span><i class="fas fa-envelope">&nbsp;chionyetonyjays@gmail.com</i></span></a>   
+    </p>
+        
+<h3 style="text-align: center;">Our Social Media handles:</h3>
+<p>
+    <div class="container mt-5 mb-5 d-flex justify-content-center">
+        <ul class="social-list">
+            <li>
+                <div class="maincard p-3">
+                    <div class="thecard">
+                        <div class="thefront text-center py-4 facebook">
+                            <div class="social-icon"> <a href="https://www.facebook.com/Bloomer-Fit-100462422525632"><i class="fa fa-facebook fa-2x"></i> </a></div>
+                        </div>
+                        <div class="theback py-3 px-3 text-center facebook">
+                            <div class="social-text mt-1"> <small class="font-weight-bold">Facebook</small> </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="maincard p-3">
+                    <div class="thecard">
+                        <div class="thefront text-center py-4 instagram">
+                            <div class="social-icon"> <a href="https://www.instagram.com/bloomerfit/"><i class="fa fa-instagram fa-2x"></i></a> </div>
+                        </div>
+                        <div class="theback py-3 px-3 text-center instagram">
+                            <div class="social-text mt-1"> <small class="font-weight-bold">Instagram</small> </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+           
+            <li>
+                <div class="maincard p-3">
+                    <div class="thecard">
+                        <div class="thefront text-center py-4 whatsapp">
+                            <div class="social-icon"><a href="https://api.whatsapp.com/send?phone=2347031066645"> <i class="fa fa-whatsapp fa-2x"></i></a> </div>
+                        </div>
+                        <div class="theback py-3 px-3 text-center whatsapp">
+                            <div class="social-text mt-1"> <small class="font-weight-bold">Whatsapp</small> </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+            
+        </ul>
+    </div> 
+</p>
+  
+</div>
+
+
+{% endblock %}
